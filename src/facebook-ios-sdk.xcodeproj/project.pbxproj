@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		550837F81E83BFFF00FA9D6C /* facebook-ios-sdk-universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 550837F91E83BFFF00FA9D6C /* Build configuration list for PBXAggregateTarget "facebook-ios-sdk-universal" */;
+			buildPhases = (
+				550837FC1E83C02100FA9D6C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "facebook-ios-sdk-universal";
+			productName = "facebook-ios-sdk-universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1EF0280918F4A67600EC0090 /* FBAppLinkResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EF0280718F4A67600EC0090 /* FBAppLinkResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EF0280A18F4A67600EC0090 /* FBAppLinkResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0280818F4A67600EC0090 /* FBAppLinkResolver.m */; };
@@ -1999,6 +2013,10 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
+					550837F81E83BFFF00FA9D6C = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					B9CBC518152537270036AA71 = {
 						TestTargetID = 89263C041926CBA500A44711;
 					};
@@ -2036,6 +2054,7 @@
 				85A44B9E16A8CE05007BE80E /* FacebookSDKIntegrationTests */,
 				89263C1A1926CBA500A44711 /* FacebookSDKApplicationTests */,
 				89263C041926CBA500A44711 /* FacebookSDKTestHost */,
+				550837F81E83BFFF00FA9D6C /* facebook-ios-sdk-universal */,
 			);
 		};
 /* End PBXProject section */
@@ -2221,6 +2240,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		550837FC1E83C02100FA9D6C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../universal-framework.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		85A44B9A16A8CE05007BE80E /* Sources */ = {
@@ -2536,6 +2571,20 @@
 			};
 			name = Release;
 		};
+		550837FA1E83BFFF00FA9D6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		550837FB1E83BFFF00FA9D6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		85A44BAE16A8CE05007BE80E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89263C001926CA5100A44711 /* FacebookSDK-ApplicationTests.xcconfig */;
@@ -2619,6 +2668,15 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		550837F91E83BFFF00FA9D6C /* Build configuration list for PBXAggregateTarget "facebook-ios-sdk-universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				550837FA1E83BFFF00FA9D6C /* Debug */,
+				550837FB1E83BFFF00FA9D6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
