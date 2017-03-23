@@ -116,6 +116,8 @@ typedef NS_ENUM(NSUInteger, FBSessionLoginBehavior) {
     FBSessionLoginBehaviorUseSystemAccountIfPresent  = 3,
     /*! Attempt only to login with Safari */
     FBSessionLoginBehaviorForcingSafari = 4,
+    
+    FBSessionLoginBehaviorUseSystemAccountOnly  = 5,
 };
 
 /*!

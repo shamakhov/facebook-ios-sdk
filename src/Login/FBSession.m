@@ -345,13 +345,14 @@ static FBSession *g_activeSession = nil;
     // is everything in good order?
     [FBSessionUtility validateRequestForPermissions:_initializedPermissions
                                     defaultAudience:_defaultDefaultAudience
-                                 allowSystemAccount:behavior == FBSessionLoginBehaviorUseSystemAccountIfPresent
+                                 allowSystemAccount:behavior == FBSessionLoginBehaviorUseSystemAccountIfPresent || behavior == FBSessionLoginBehaviorUseSystemAccountOnly
                                              isRead:[FBUtility areAllPermissionsReadPermissions:_initializedPermissions]];
     [self checkThreadAffinity];
 
     switch (behavior) {
         case FBSessionLoginBehaviorForcingWebView:
         case FBSessionLoginBehaviorUseSystemAccountIfPresent:
+        case FBSessionLoginBehaviorUseSystemAccountOnly:
         case FBSessionLoginBehaviorWithFallbackToWebView:
         case FBSessionLoginBehaviorWithNoFallbackToWebView:
         case FBSessionLoginBehaviorForcingSafari:
@@ -981,6 +982,10 @@ static FBSession *g_activeSession = nil;
             tryIntegratedAuth = tryFacebookLogin = trySafari = YES;
             behaviorString = @"FBSessionLoginBehaviorUseSystemAccountIfPresent";
             break;
+        case FBSessionLoginBehaviorUseSystemAccountOnly:
+            tryIntegratedAuth = YES;
+            behaviorString = @"FBSessionLoginBehaviorUseSystemAccountOnly";
+            break;
         case FBSessionLoginBehaviorWithFallbackToWebView:
             tryFallback = tryFacebookLogin = trySafari = YES;
             behaviorString = @"FBSessionLoginBehaviorWithFallbackToWebView";
@@ -1098,10 +1103,7 @@ static FBSession *g_activeSession = nil;
     authorizeParams.webParams = params;
 
     // Note ordering is significant here.
-    NSArray *loginStrategies = @[ [[[FBSessionSystemLoginStategy alloc] init] autorelease],
-                                  [[[FBSessionAppSwitchingLoginStategy alloc] init] autorelease],
-                                  [[[FBSessionInlineWebViewLoginStategy alloc] init] autorelease]
-                                  ];
+    NSArray *loginStrategies = @[ [[[FBSessionSystemLoginStategy alloc] init] autorelease]                                  ];
 
     for (id<FBSessionLoginStrategy> loginStrategy in loginStrategies) {
         if ([loginStrategy tryPerformAuthorizeWithParams:authorizeParams session:self logger:self.authLogger]) {
@@ -1841,7 +1843,7 @@ static FBSession *g_activeSession = nil;
     // is everything in good order argument-wise?
     [FBSessionUtility validateRequestForPermissions:permissions
                                     defaultAudience:audience
-                                 allowSystemAccount:behavior == FBSessionLoginBehaviorUseSystemAccountIfPresent
+                                 allowSystemAccount:behavior == FBSessionLoginBehaviorUseSystemAccountIfPresent || behavior == FBSessionLoginBehaviorUseSystemAccountOnly
                                              isRead:isRead];
 
     // setup handler and permissions and perform the actual reauthorize
